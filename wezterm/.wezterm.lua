@@ -1,7 +1,6 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
 local act = wezterm.action
-local fish_path = "/opt/homebrew/bin/fish"
 
 require("events.right-status").setup()
 
@@ -14,29 +13,8 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
-config.default_prog = { fish_path, "-l" }
-
 -- This is where you actually apply your config choices
-config.color_scheme = "Catppuccin Mocha"
-
-config.colors = {
-	foreground = "#ffffff",
-	background = "#16181a",
-
-	cursor_bg = "#ffffff",
-	cursor_fg = "#ffffff",
-	cursor_border = "#ffffff",
-
-	selection_fg = "#ffffff",
-	selection_bg = "#3c4048",
-
-	scrollbar_thumb = "#16181a",
-	split = "#16181a",
-
-	ansi = { "#16181a", "#ff6e5e", "#5eff6c", "#f1ff5e", "#5ea1ff", "#bd5eff", "#5ef1ff", "#ffffff" },
-	brights = { "#3c4048", "#ff6e5e", "#5eff6c", "#f1ff5e", "#5ea1ff", "#bd5eff", "#5ef1ff", "#ffffff" },
-	indexed = { [16] = "#ffbd5e", [17] = "#ff6e5e" },
-}
+config.color_scheme = "Poimandres"
 
 config.font_size = 19.0
 config.line_height = 1.2
@@ -55,13 +33,13 @@ config.window_padding = {
 config.native_macos_fullscreen_mode = true
 config.window_close_confirmation = "NeverPrompt"
 config.window_decorations = "RESIZE"
-config.window_background_opacity = 0.8
+config.window_background_opacity = 0.7
 config.macos_window_background_blur = 10
 config.inactive_pane_hsb = {
 	saturation = 0.9,
 	brightness = 0.65,
 }
-config.default_cursor_style = "BlinkingUnderline"
+config.default_cursor_style = "BlinkingBar"
 -- key bindings
 config.keys = {
 	{

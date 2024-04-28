@@ -6,11 +6,8 @@ vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
 vim.opt.title = true
 
--- might change later
-vim.opt.shell = "fish"
-
 vim.opt.cursorline = true
-vim.opt.wrap = false
+vim.opt.wrap = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.hlsearch = true
@@ -19,3 +16,4 @@ vim.opt.smartindent = true
 vim.opt.autoindent = true
 vim.opt.smartcase = true
 vim.opt.smoothscroll = true
+vim.opt.cursorcolumn = false
