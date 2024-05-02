@@ -1,17 +1,29 @@
 return {
-  -- add any tools you want to have installed below
   {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
         "stylua",
+        "selene",
+
         "shellcheck",
         "shfmt",
-        "flake8",
-        "eslint_d",
-        "prettierd",
+        -- frontend
         "prettier",
+        "eslint-lsp",
+        -- rust
+        "rust-analyzer",
+        -- markdown
+        "markdownlint",
+        "marksman",
+        -- go
+        "gofumpt",
+        "gopls",
         "goimports",
+        -- docker
+        "hadolint",
+
+        "codelldb",
       },
     },
   },

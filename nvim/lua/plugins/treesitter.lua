@@ -1,5 +1,4 @@
 return {
-  -- add more treesitter parsers
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
@@ -7,33 +6,38 @@ return {
         "bash",
         "html",
         "javascript",
+        "tsx",
+        "typescript",
+        "css",
+
         "json",
+        "json5",
+        "jsonc",
+
         "lua",
         "markdown",
         "markdown_inline",
+
         "python",
+        "ninja",
+        "rst",
+
         "query",
         "regex",
-        "tsx",
-        "typescript",
         "vim",
         "yaml",
+
+        "go",
+        "gomod",
+        "gowork",
+        "gosum",
+
+        "rust",
+        "toml",
+        "ron",
+
+        "dockerfile",
       },
     },
-  },
-
-  -- since `vim.tbl_deep_extend`, can only merge tables and not lists, the code above
-  -- would overwrite `ensure_installed` with the new value.
-  -- If you'd rather extend the default config, use the code below instead:
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      -- add tsx and treesitter
-      vim.list_extend(opts.ensure_installed, {
-        "rust",
-        "go",
-        "toml",
-      })
-    end,
   },
 }

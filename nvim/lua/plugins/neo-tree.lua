@@ -1,7 +1,10 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
   opts = function(_, opts)
-    opts.filesystem = vim.tbl_extend("keep", opts.filesystem, {
+    opts.window = vim.tbl_deep_extend("keep", opts.window, {
+      width = 30,
+    })
+    opts.filesystem = vim.tbl_deep_extend("keep", opts.filesystem, {
       filtered_items = {
         visible = true,
         show_hidden_count = true,

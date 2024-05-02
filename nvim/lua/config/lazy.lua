@@ -8,26 +8,18 @@ end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 require("lazy").setup({
+  ui = {
+    border = "rounded",
+  },
   spec = {
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-    -- import any extras modules here
-    { import = "lazyvim.plugins.extras.editor.outline" },
-    { import = "lazyvim.plugins.extras.lang.typescript" },
-    { import = "lazyvim.plugins.extras.lang.json" },
-    { import = "lazyvim.plugins.extras.lang.markdown" },
-    { import = "lazyvim.plugins.extras.lang.java" },
-    { import = "lazyvim.plugins.extras.lang.rust" },
-    { import = "lazyvim.plugins.extras.lang.go" },
-    { import = "lazyvim.plugins.extras.lang.docker" },
-    { import = "lazyvim.plugins.extras.linting.eslint" },
-    { import = "lazyvim.plugins.extras.formatting.prettier" },
-    { import = "lazyvim.plugins.extras.lang.json" },
-    { import = "lazyvim.plugins.extras.coding.yanky" },
     { import = "lazyvim.plugins.extras.util.dot" },
+    { import = "lazyvim.plugins.extras.dap.core" },
     { import = "lazyvim.plugins.extras.test.core" },
-    -- import/override with your plugins
+    { import = "lazyvim.plugins.extras.dap.nlua" },
     { import = "plugins" },
+    { import = "plugins.lang" },
   },
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
@@ -37,9 +29,8 @@ require("lazy").setup({
     -- have outdated releases, which may break your Neovim install.
     version = false, -- always use the latest git commit
     -- version = "*", -- try installing the latest stable version for plugins that support semver
-    markdown = true,
   },
-  install = { colorscheme = { "cyberdream", "citruszest", "nightfox", "tokyonight", "habamax" } },
+  install = { colorscheme = { "cyberdream", "citruszest", "tokyonight", "habamax" } },
   checker = { enabled = true }, -- automatically check for plugin updates
   performance = {
     rtp = {
