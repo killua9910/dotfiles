@@ -1,21 +1,11 @@
 return {
   {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      {
-        "Saecki/crates.nvim",
-        event = { "BufRead Cargo.toml" },
-        opts = {
-          src = {
-            cmp = { enabled = true },
-          },
-        },
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        rust = { "rustfmt" },
       },
     },
-    opts = function(_, opts)
-      opts.sources = opts.sources or {}
-      table.insert(opts.sources, { name = "crates" })
-    end,
   },
   {
     "mrcjkb/rustaceanvim",

@@ -42,22 +42,11 @@ return {
       })
     end,
   },
-  -- Configure LazyVim to load gruvbox
   {
     "LazyVim/LazyVim",
     opts = {
       colorscheme = "cyberdream",
     },
-  },
-  {
-    "nvim-lualine/lualine.nvim",
-    event = "VeryLazy",
-    opts = function(_, opts)
-      vim.tbl_deep_extend("keep", opts.options, {
-        icon_enabled = true,
-        theme = "cyberdream",
-      })
-    end,
   },
   {
     "which-key.nvim",
