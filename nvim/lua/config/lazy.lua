@@ -18,6 +18,7 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.dap.core" },
     { import = "lazyvim.plugins.extras.test.core" },
     { import = "lazyvim.plugins.extras.dap.nlua" },
+    { import = "lazyvim.plugins.extras.editor.outline" },
     { import = "plugins" },
     { import = "plugins.lang" },
   },
@@ -30,7 +31,7 @@ require("lazy").setup({
     version = false, -- always use the latest git commit
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
-  install = { colorscheme = { "cyberdream", "citruszest", "tokyonight", "habamax" } },
+  install = { colorscheme = { "nightfox", "cyberdream", "citruszest", "tokyonight", "habamax" } },
   checker = { enabled = true }, -- automatically check for plugin updates
   performance = {
     rtp = {

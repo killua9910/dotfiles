@@ -1,13 +1,5 @@
 return {
   {
-    "stevearc/conform.nvim",
-    opts = {
-      formatters_by_ft = {
-        lua = { "stylua" },
-      },
-    },
-  },
-  {
     "neovim/nvim-lspconfig",
     opts = function(_, opts)
       opts.servers.lua_ls = vim.tbl_deep_extend("force", opts.servers.lua_ls, {

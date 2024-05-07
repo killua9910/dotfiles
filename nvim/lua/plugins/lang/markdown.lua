@@ -1,19 +1,11 @@
 return {
   {
-    "mfussenegger/nvim-lint",
-    opts = {
-      linters_by_ft = {
-        markdown = { "markdownlint" },
-      }
-    }
-  },
-  {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
         marksman = {},
-      }
-    }
+      },
+    },
   },
   {
     "iamcco/markdown-preview.nvim",

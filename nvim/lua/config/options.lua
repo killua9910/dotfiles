@@ -3,3 +3,4 @@
 -- Add any additional options here
 
 vim.opt.pumblend = 0
+vim.opt.smartindent = true

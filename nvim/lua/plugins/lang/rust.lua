@@ -1,13 +1,5 @@
 return {
   {
-    "stevearc/conform.nvim",
-    opts = {
-      formatters_by_ft = {
-        rust = { "rustfmt" },
-      },
-    },
-  },
-  {
     "mrcjkb/rustaceanvim",
     version = "^4", -- Recommended
     ft = { "rust" },
@@ -22,14 +14,12 @@ return {
           end, { desc = "Rust Debuggables", buffer = bufnr })
         end,
         default_settings = {
-          -- rust-analyzer language server configuration
           ["rust-analyzer"] = {
             cargo = {
               allFeatures = true,
               loadOutDirsFromCheck = true,
               runBuildScripts = true,
             },
-            -- Add clippy lints for Rust.
             checkOnSave = {
               allFeatures = true,
               command = "clippy",
@@ -51,12 +41,56 @@ return {
       vim.g.rustaceanvim = vim.tbl_deep_extend("keep", vim.g.rustaceanvim or {}, opts or {})
     end,
   },
-
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      {
+        "Saecki/crates.nvim",
+        event = { "BufRead Cargo.toml" },
+        opts = {
+          src = {
+            cmp = { enabled = true },
+          },
+          null_ls = {
+            enabled = false,
+          },
+        },
+      },
+    },
+    ---@param opts cmp.ConfigSchema
+    opts = function(_, opts)
+      opts.sources = opts.sources or {}
+      table.insert(opts.sources, { name = "crates" })
+    end,
+  },
   {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        rust_analyzer = {},
+        rust_analyzer = {
+          settings = {
+            ["rust-analyzer"] = {
+              cargo = {
+                allFeatures = true,
+                loadOutDirsFromCheck = true,
+                runBuildScripts = true,
+              },
+              checkOnSave = {
+                allFeatures = true,
+                command = "clippy",
+                extraArgs = { "--no-deps" },
+              },
+              procMacro = {
+                enable = true,
+                ignored = {
+                  ["async-trait"] = { "async_trait" },
+                  ["napi-derive"] = { "napi" },
+                  ["async-recursion"] = { "async_recursion" },
+                },
+              },
+            },
+          },
+        },
         taplo = {
           keys = {
             {

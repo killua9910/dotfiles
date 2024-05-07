@@ -5,88 +5,118 @@ return {
     opts = {},
     event = "BufRead package.json",
   },
-  -- {
-  --   "neovim/nvim-lspconfig",
-  --   opts = {
-  --     servers = {
-  --       tsserver = {
-  --         keys = {
-  --           {
-  --             "<leader>co",
-  --             function()
-  --               vim.lsp.buf.code_action({
-  --                 apply = true,
-  --                 context = {
-  --                   only = { "source.organizeImports.ts" },
-  --                   diagnostics = {},
-  --                 },
-  --               })
-  --             end,
-  --             desc = "Organize Imports",
-  --           },
-  --           {
-  --             "<leader>cR",
-  --             function()
-  --               vim.lsp.buf.code_action({
-  --                 apply = true,
-  --                 context = {
-  --                   only = { "source.removeUnused.ts" },
-  --                   diagnostics = {},
-  --                 },
-  --               })
-  --             end,
-  --             desc = "Remove Unused Imports",
-  --           },
-  --         },
-  --         settings = {
-  --           completions = {
-  --             completeFunctionCalls = true,
-  --           },
-  --         },
-  --       },
-  --     },
-  --   },
-  -- },
   {
-    "pmizio/typescript-tools.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    "neovim/nvim-lspconfig",
     opts = {
-      settings = {
-        tsserver_file_preferences = {
-          includeInlayParameterNameHints = "all",
-          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-          includeInlayFunctionParameterTypeHints = true,
-          includeInlayVariableTypeHints = true,
-          includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-          includeInlayPropertyDeclarationTypeHints = true,
-          includeInlayFunctionLikeReturnTypeHints = true,
-          includeInlayEnumMemberValueHints = true,
+      servers = {
+        tsserver = {
+          keys = {
+            {
+              "<leader>co",
+              function()
+                vim.lsp.buf.code_action({
+                  apply = true,
+                  context = {
+                    only = { "source.organizeImports.ts" },
+                    diagnostics = {},
+                  },
+                })
+              end,
+              desc = "Organize Imports",
+            },
+            {
+              "<leader>cR",
+              function()
+                vim.lsp.buf.code_action({
+                  apply = true,
+                  context = {
+                    only = { "source.removeUnused.ts" },
+                    diagnostics = {},
+                  },
+                })
+              end,
+              desc = "Remove Unused Imports",
+            },
+          },
+          settings = {
+            completions = {
+              completeFunctionCalls = true,
+            },
+            typescript = {
+              includeInlayParameterNameHints = "all",
+              includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+              includeInlayFunctionParameterTypeHints = true,
+              includeInlayVariableTypeHints = true,
+              includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+              includeInlayPropertyDeclarationTypeHints = true,
+              includeInlayFunctionLikeReturnTypeHints = true,
+              includeInlayEnumMemberValueHints = true,
+            },
+            javascript = {
+              includeInlayParameterNameHints = "all",
+              includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+              includeInlayFunctionParameterTypeHints = true,
+              includeInlayVariableTypeHints = true,
+              includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+              includeInlayPropertyDeclarationTypeHints = true,
+              includeInlayFunctionLikeReturnTypeHints = true,
+              includeInlayEnumMemberValueHints = true,
+            },
+          },
         },
       },
     },
   },
   {
-    "stevearc/conform.nvim",
-    opts = {
-      formatters_by_ft = {
-        javascript = { "prettier" },
-        html = { "prettier" },
-        typescript = { "prettier" },
-        javascriptreact = { "prettier" },
-        typescriptreact = { "prettier" },
-        css = { "prettier" },
+    "mfussenegger/nvim-dap",
+    optional = true,
+    dependencies = {
+      {
+        "williamboman/mason.nvim",
+        opts = function(_, opts)
+          opts.ensure_installed = opts.ensure_installed or {}
+          table.insert(opts.ensure_installed, "js-debug-adapter")
+        end,
       },
     },
-  },
-  {
-    "mfussenegger/nvim-lint",
-    opts = {
-      linters_by_ft = {
-        javascript = { "eslint" },
-        typescript = { "eslint" },
-        javascriptreact = { "eslint" },
-        typescriptreact = { "eslint" },
-      },
-    },
+    opts = function()
+      local dap = require("dap")
+      if not dap.adapters["pwa-node"] then
+        require("dap").adapters["pwa-node"] = {
+          type = "server",
+          host = "localhost",
+          port = "${port}",
+          executable = {
+            command = "node",
+            -- 💀 Make sure to update this path to point to your installation
+            args = {
+              require("mason-registry").get_package("js-debug-adapter"):get_install_path()
+                .. "/js-debug/src/dapDebugServer.js",
+              "${port}",
+            },
+          },
+        }
+      end
+      for _, language in ipairs({ "typescript", "javascript", "typescriptreact", "javascriptreact" }) do
+        if not dap.configurations[language] then
+          dap.configurations[language] = {
+            {
+              type = "pwa-node",
+              request = "launch",
+              name = "Launch file",
+              program = "${file}",
+              cwd = "${workspaceFolder}",
+            },
+            {
+              type = "pwa-node",
+              request = "attach",
+              name = "Attach",
+              processId = require("dap.utils").pick_process,
+              cwd = "${workspaceFolder}",
+            },
+          }
+        end
+      end
+    end,
   },
 }

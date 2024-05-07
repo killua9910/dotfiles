@@ -1,3 +1,39 @@
+local kinds = {
+  Array = "",
+  Boolean = "",
+  Class = "",
+  Color = "",
+  Constant = "",
+  Constructor = "",
+  Enum = "",
+  EnumMember = "",
+  Event = "",
+  Field = "",
+  File = "",
+  Folder = "󰉋",
+  Function = "",
+  Interface = "",
+  Key = "",
+  Keyword = "",
+  Method = "",
+  Module = "",
+  Namespace = "",
+  Null = "󰟢",
+  Number = "",
+  Object = "",
+  Operator = "",
+  Package = "",
+  Property = "",
+  Reference = "",
+  Snippet = "",
+  String = "",
+  Struct = "",
+  Text = "",
+  TypeParameter = "",
+  Unit = "",
+  Value = "",
+  Variable = "",
+}
 return {
   {
     "hrsh7th/nvim-cmp",
@@ -40,13 +76,11 @@ return {
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
-      "onsails/lspkind.nvim",
       "hrsh7th/cmp-calc",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-cmdline",
-      "hrsh7th/nvim-cmp",
       "L3MON4D3/LuaSnip",
       "nvim-tree/nvim-web-devicons",
     },
@@ -64,7 +98,7 @@ return {
             { "╰", "Comment" },
             { "│", "Comment" },
           },
-          scrollbar = false,
+          col_offset = 1,
         }),
         documentation = cmp.config.window.bordered({
           border = {
@@ -77,7 +111,7 @@ return {
             { "╰", "Comment" },
             { "│", "Comment" },
           },
-          scrollbar = false,
+          col_offset = 1,
         }),
       }
       opts.completion = {
@@ -98,14 +132,6 @@ return {
       })
       opts.formatting = {
         fields = { "kind", "abbr", "menu" },
-        max_width = 0,
-        duplicates = {
-          buffer = 1,
-          path = 1,
-          nvim_lsp = 0,
-          luasnip = 1,
-        },
-        duplicates_default = 0,
         format = function(entry, vim_item)
           if vim.tbl_contains({ "path" }, entry.source.name) then
             local icon, hl_group = require("nvim-web-devicons").get_icon(entry:get_completion_item().label)
@@ -117,20 +143,26 @@ return {
           end
           vim_item.menu = ({
             nvim_lsp = "(LSP)",
-            emoji = "(Emoji)",
-            path = "(Path)",
-            calc = "(Calc)",
-            luasnip = "(Snippet)",
             buffer = "(Buffer)",
+            path = "(Path)",
+            luasnip = "(Snippet)",
+            emoji = "(Emoji)",
+            calc = "(Calc)",
           })[entry.source.name]
 
-          return require("lspkind").cmp_format({
-            mode = "symbol_text",
-            preset = "codicons",
-          })(entry, vim_item)
+          vim_item.dup = ({
+            buffer = 1,
+            path = 1,
+            nvim_lsp = 0,
+            luasnip = 1,
+          })[entry.source.name] or 0
+
+          if kinds[vim_item.kind] then
+            vim_item.kind = kinds[vim_item.kind] .. " " .. vim_item.kind
+          end
+          return vim_item
         end,
       }
-
       return opts
     end,
   },
