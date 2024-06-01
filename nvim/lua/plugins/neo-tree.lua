@@ -2,7 +2,7 @@ return {
   "nvim-neo-tree/neo-tree.nvim",
   opts = function(_, opts)
     opts.window = vim.tbl_deep_extend("keep", opts.window, {
-      width = 30,
+      width = 40,
     })
     opts.filesystem = vim.tbl_deep_extend("keep", opts.filesystem, {
       filtered_items = {

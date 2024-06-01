@@ -10,17 +10,32 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 require("lazy").setup({
   ui = {
     border = "rounded",
+    backdrop = 100,
   },
   spec = {
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+    { import = "lazyvim.plugins.extras.coding.mini-surround" },
+    { import = "lazyvim.plugins.extras.editor.harpoon2" },
     { import = "lazyvim.plugins.extras.util.dot" },
     { import = "lazyvim.plugins.extras.dap.core" },
     { import = "lazyvim.plugins.extras.test.core" },
     { import = "lazyvim.plugins.extras.dap.nlua" },
-    { import = "lazyvim.plugins.extras.editor.outline" },
+    { import = "lazyvim.plugins.extras.coding.yanky" },
+    { import = "lazyvim.plugins.extras.formatting.prettier" },
+    { import = "lazyvim.plugins.extras.linting.eslint" },
+    { import = "lazyvim.plugins.extras.lang.docker" },
+    { import = "lazyvim.plugins.extras.lang.go" },
+    { import = "lazyvim.plugins.extras.lang.json" },
+    { import = "lazyvim.plugins.extras.lang.markdown" },
+    { import = "lazyvim.plugins.extras.lang.python" },
+    { import = "lazyvim.plugins.extras.lang.rust" },
+    { import = "lazyvim.plugins.extras.lang.yaml" },
+    { import = "lazyvim.plugins.extras.lang.toml" },
+    { import = "lazyvim.plugins.extras.lang.typescript" },
+    { import = "lazyvim.plugins.extras.lang.vue" },
+    { import = "lazyvim.plugins.extras.util.project" },
     { import = "plugins" },
-    { import = "plugins.lang" },
   },
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
@@ -31,7 +46,7 @@ require("lazy").setup({
     version = false, -- always use the latest git commit
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
-  install = { colorscheme = { "nightfox", "cyberdream", "citruszest", "tokyonight", "habamax" } },
+  install = { colorscheme = { "catppuccin", "nightfox", "cyberdream", "citruszest", "tokyonight", "habamax" } },
   checker = { enabled = true }, -- automatically check for plugin updates
   performance = {
     rtp = {

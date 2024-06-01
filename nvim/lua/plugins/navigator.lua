@@ -1,8 +1,6 @@
 return {
-  {
-    "numToStr/Navigator.nvim",
-    config = function()
-      require("Navigator").setup()
-    end,
-  },
+  "numToStr/Navigator.nvim",
+  config = function()
+    require("Navigator").setup()
+  end,
 }

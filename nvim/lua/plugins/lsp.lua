@@ -8,6 +8,18 @@ return {
       codelens = {
         enabled = false,
       },
+      servers = {
+        eslint = {
+          settings = {
+            workingDirectories = { mode = "auto" },
+          },
+        },
+      },
+      setup = {
+        rust_analyzer = function()
+          return true
+        end,
+      },
     },
   },
 }

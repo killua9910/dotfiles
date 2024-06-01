@@ -1,8 +1,9 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
+    opts = function(_, opts)
+      opts.ensure_installed = vim.tbl_deep_extend("force", opts.ensure_installed, {
+
         "bash",
         "html",
         "javascript",
@@ -37,7 +38,7 @@ return {
         "ron",
 
         "dockerfile",
-      },
-    },
+      })
+    end,
   },
 }

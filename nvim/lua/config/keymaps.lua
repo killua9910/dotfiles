@@ -10,25 +10,16 @@ set({ "n", "t" }, "<C-l>", "<CMD>NavigatorRight<CR>", { desc = "Navigate Right",
 set({ "n", "t" }, "<C-k>", "<CMD>NavigatorUp<CR>", { desc = "Navigate Up", silent = true })
 set({ "n", "t" }, "<C-j>", "<CMD>NavigatorDown<CR>", { desc = "Navigate Down", silent = true })
 
--- Close buffer
-set("n", "<leader>bd", "<Cmd>BufferClose<CR>", {
-  desc = "BufferClose",
-  silent = true,
-})
-set("n", "<C-p>", "<Cmd>BufferPick<CR>", {
-  desc = "BufferPick",
-  silent = true,
-})
--- Sort automatically by...
-set("n", "<Space>bb", "<Cmd>BufferOrderByBufferNumber<CR>", {
-  desc = "BufferOrderByBufferNumber",
-})
-set("n", "<leader>bn", "<Cmd>BufferOrderByName<CR>", {
-  desc = "BufferOrderByName",
-})
-set("n", "<leader>bl", "<Cmd>BufferOrderByLanguage<CR>", {
-  desc = "BufferOrderByLanguage",
-})
-set("n", "<leader>bw", "<Cmd>BufferOrderByWindowNumber<CR>", {
-  desc = "BufferOrderByWindowNumber",
-})
+set("n", "<leader>ww", "<CMD>w<CR><ESC>", { desc = "Save File" })
+set("n", "<leader>wq", "<CMD>wq<CR>", { desc = "Save File And Quit", silent = true })
+
+set("n", "<leader>dd", LazyVim.ui.bufremove, { desc = "Delete Buffer", silent = true })
+
+set("n", "i", function()
+  return string.match(vim.api.nvim_get_current_line(), "%g") == nil and "cc" or "i"
+end, { expr = true, noremap = true })
+
+set("n", "<leader>fB", "<cmd>Telescope file_browser<cr>", { desc = "File browser", noremap = true })
+set("n", "<leader>fu", "<cmd>Telescope undo<cr>", { desc = "Undo history", noremap = true })
+set("n", "<leader>fm", "<cmd>Telescope media_files<cr>", { desc = "Media files", noremap = true })
+set("n", "<leader><leader>", "<cmd>Telescope smart_open<cr>", { desc = "Smart open", noremap = true })

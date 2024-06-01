@@ -8,6 +8,8 @@ $env_var\
 $username\
 $sudo\
 $character\
+$singularity\
+$kubernetes\
 $directory\
 $vcsh\
 $fossil_branch\
@@ -17,8 +19,6 @@ $git_state\
 $git_metrics\
 $git_status\
 $hg_branch\
-$singularity\
-$kubernetes\
 $pijul_channel\
 $docker_context\
 $package\
@@ -82,29 +82,143 @@ $os\
 $container\
 $battery\
 $time\
-[ λ ](bold bright-red)\
-"""
+[ Ω ](bold bright-red)\
+$line_break[λ ](bold green)"""
 
 add_newline = true
 
+palette = "catppuccin_mocha"
+# palette tables should be last in the config ⚓️
+[palettes.catppuccin_macchiato]
+rosewater = "#f4dbd6"
+flamingo = "#f0c6c6"
+pink = "#f5bde6"
+mauve = "#c6a0f6"
+red = "#ed8796"
+maroon = "#ee99a0"
+peach = "#f5a97f"
+yellow = "#eed49f"
+green = "#a6da95"
+teal = "#8bd5ca"
+sky = "#91d7e3"
+sapphire = "#7dc4e4"
+blue = "#8aadf4"
+lavender = "#b7bdf8"
+text = "#cad3f5"
+subtext1 = "#b8c0e0"
+subtext0 = "#a5adcb"
+overlay2 = "#939ab7"
+overlay1 = "#8087a2"
+overlay0 = "#6e738d"
+surface2 = "#5b6078"
+surface1 = "#494d64"
+surface0 = "#363a4f"
+base = "#24273a"
+mantle = "#1e2030"
+crust = "#181926"
+
+[palettes.catppuccin_frappe]
+rosewater = "#f2d5cf"
+flamingo = "#eebebe"
+pink = "#f4b8e4"
+mauve = "#ca9ee6"
+red = "#e78284"
+maroon = "#ea999c"
+peach = "#ef9f76"
+yellow = "#e5c890"
+green = "#a6d189"
+teal = "#81c8be"
+sky = "#99d1db"
+sapphire = "#85c1dc"
+blue = "#8caaee"
+lavender = "#babbf1"
+text = "#c6d0f5"
+subtext1 = "#b5bfe2"
+subtext0 = "#a5adce"
+overlay2 = "#949cbb"
+overlay1 = "#838ba7"
+overlay0 = "#737994"
+surface2 = "#626880"
+surface1 = "#51576d"
+surface0 = "#414559"
+base = "#303446"
+mantle = "#292c3c"
+crust = "#232634"
+
+[palettes.catppuccin_latte]
+rosewater = "#dc8a78"
+flamingo = "#dd7878"
+pink = "#ea76cb"
+mauve = "#8839ef"
+red = "#d20f39"
+maroon = "#e64553"
+peach = "#fe640b"
+yellow = "#df8e1d"
+green = "#40a02b"
+teal = "#179299"
+sky = "#04a5e5"
+sapphire = "#209fb5"
+blue = "#1e66f5"
+lavender = "#7287fd"
+text = "#4c4f69"
+subtext1 = "#5c5f77"
+subtext0 = "#6c6f85"
+overlay2 = "#7c7f93"
+overlay1 = "#8c8fa1"
+overlay0 = "#9ca0b0"
+surface2 = "#acb0be"
+surface1 = "#bcc0cc"
+surface0 = "#ccd0da"
+base = "#eff1f5"
+mantle = "#e6e9ef"
+crust = "#dce0e8"
+
+[palettes.catppuccin_mocha]
+rosewater = "#f5e0dc"
+flamingo = "#f2cdcd"
+pink = "#f5c2e7"
+mauve = "#cba6f7"
+red = "#f38ba8"
+maroon = "#eba0ac"
+peach = "#fab387"
+yellow = "#f9e2af"
+green = "#a6e3a1"
+teal = "#94e2d5"
+sky = "#89dceb"
+sapphire = "#74c7ec"
+blue = "#89b4fa"
+lavender = "#b4befe"
+text = "#cdd6f4"
+subtext1 = "#bac2de"
+subtext0 = "#a6adc8"
+overlay2 = "#9399b2"
+overlay1 = "#7f849c"
+overlay0 = "#6c7086"
+surface2 = "#585b70"
+surface1 = "#45475a"
+surface0 = "#313244"
+base = "#1e1e2e"
+mantle = "#181825"
+crust = "#11111b"
+
 [character]
 format = "$symbol "
-success_symbol = "[◉](bold italic bright-yellow)"
-error_symbol = "[⊘](italic purple)"
+success_symbol = "[◉](bold bright-yellow)"
+error_symbol = "[⊘](purple)"
 
 [env_var.VIMSHELL] # vim subshell
 format = "[$env_value]($style)"
-style = 'green italic'
+style = 'green'
 
 [sudo]
 format = "[$symbol]($style)"
-style = "italic bright-purple"
+style = "bright-purple"
 symbol = "◇┈"
 disabled = false
 
 [username]
 style_user = "yellow bold"
-style_root = "purple bold italic"
+style_root = "purple bold"
 format = "[$user]($style) ▻ "
 disabled = false
 
@@ -113,17 +227,17 @@ home_symbol = "⌂"
 truncation_length = 2
 truncation_symbol = "▦ "
 read_only = " ■"
-style = "italic blue"
+style = "blue"
 format = ' [$path]($style)[$read_only]($read_only_style)'
 
 [cmd_duration]
 min_time = 500
-format = "[$duration ](italic bright-yellow)"
+format = "[$duration ](bright-yellow)"
 
 [jobs]
 format = "[ $symbol$number]($style)"
 style = "white"
-symbol = "[▶ ](blue italic)"
+symbol = "[▶ ](blue)"
 
 [localip]
 ssh_only = true
@@ -139,11 +253,11 @@ style = "dimmed white"
 
 [battery]
 format = "[ $percentage $symbol]($style)"
-full_symbol = "[█](italic green)"
-charging_symbol = "[↑](italic green)"
-discharging_symbol = "[↓](italic)"
-unknown_symbol = "[░](italic)"
-empty_symbol = "[▃](italic red)"
+full_symbol = "[█](green)"
+charging_symbol = "[↑](green)"
+discharging_symbol = "[↓]"
+unknown_symbol = "[░]"
+empty_symbol = "[▃](red)"
 
 [[battery.display]]
 threshold = 40
@@ -156,69 +270,69 @@ style = "dimmed white"
 [git_branch]
 format = "[ $symbol $branch(:$remote_branch)]($style)"
 symbol = "[◬](bold bright-blue)"
-style = "bold italic bright-blue"
+style = "bold bright-blue"
 
 [git_status]
-style = "italic bright-blue"
+style = "bright-blue"
 format = """([⎪$ahead_behind$staged$modified$untracked$renamed$deleted$conflicted$stashed⎥]($style))"""
-conflicted = "[◪◦](italic bright-magenta)"
-ahead = "[▲│[${count}](bold white)│](italic green)"
-behind = "[▽│[${count}](bold white)│](italic red)"
-diverged = "[◇ ▲┤[${ahead_count}](regular white)│▽┤[${behind_count}](regular white)│](italic bright-magenta)"
-untracked = "[◌◦](italic bright-yellow)"
-stashed = "[◦◫◦](italic white)"
-modified = "[●◦](italic yellow)"
-staged = "[■┤[$count](bold white)│](italic bright-cyan)"
-renamed = "[◎◦](italic bright-blue)"
-deleted = "[✕](italic red)"
+conflicted = "[◪◦](bright-magenta)"
+ahead = "[▲│[${count}](bold white)│](green)"
+behind = "[▽│[${count}](bold white)│](red)"
+diverged = "[◇ ▲┤[${ahead_count}](regular white)│▽┤[${behind_count}](regular white)│](bright-magenta)"
+untracked = "[◌◦](bright-yellow)"
+stashed = "[◦◫◦](white)"
+modified = "[●◦](yellow)"
+staged = "[■┤[$count](bold white)│](bright-cyan)"
+renamed = "[◎◦](bright-blue)"
+deleted = "[✕](red)"
 
 [deno]
-format = " deno [∫ $version](blue italic)"
+format = " deno [∫ $version](blue)"
 version_format = "${major}.${minor}"
 
 [lua]
 format = " lua [${symbol}${version}]($style)"
 symbol = "⨀ "
-style = "italic bright-yellow"
+style = "bright-yellow"
 
 [nodejs]
-format = " node [◫ ($version)](italic bright-green)"
+format = " node [◫ ($version)](bright-green)"
 detect_files = ["package-lock.json", "yarn.lock"]
 version_format = "${major}.${minor}"
 
 [python]
 format = " py [${symbol}${version}]($style)"
-symbol = "[⌉](italic bright-blue)⌊ "
+symbol = "[⌉](bright-blue)⌊ "
 version_format = "${major}.${minor}"
-style = "italic bright-yellow"
+style = "bright-yellow"
 
 [ruby]
 format = " rb [${symbol}${version}]($style)"
 symbol = "◆ "
 version_format = "${major}.${minor}"
-style = "italic red"
+style = "red"
 
 [rust]
 format = " rs [$symbol$version]($style)"
 symbol = "⊃ "
 version_format = "${major}.${minor}"
-style = "italic red"
+style = "red"
 
 [package]
 format = " pkg [$symbol$version]($style)"
 version_format = "${major}.${minor}"
 symbol = "◫ "
-style = "bright-yellow italic"
+style = "bright-yellow"
 
 [swift]
 format = " sw [${symbol}${version}]($style)"
 symbol = "◁ "
-style = "italic bright-red"
+style = "bright-red"
 version_format = "${major}.${minor}"
 
 [aws]
 format = " aws [$symbol $profile $region]($style)"
-style = "italic blue"
+style = "blue"
 symbol = "▲ "
 
 [buf]
