@@ -11,8 +11,6 @@ return {
         -- frontend
         "prettier",
         "eslint-lsp",
-        -- rust
-        "rust-analyzer",
         -- markdown
         "markdownlint",
         "marksman",

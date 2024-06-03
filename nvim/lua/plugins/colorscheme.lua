@@ -56,7 +56,7 @@ return {
     priority = 1000,
     name = "catppuccin",
     opts = {
-      flavour = "frappe",
+      flavour = "auto",
       transparent_background = true,
       term_colors = true,
       styles = {
@@ -141,7 +141,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin",
+      colorscheme = "catppuccin-frappe",
     },
   },
 }

@@ -7,7 +7,6 @@ return {
         go = { "golangcilint" },
         dockerfile = { "hadolint" },
         markdown = { "markdownlint" },
-        python = { "ruff" },
         javascript = { "eslint" },
         typescript = { "eslint" },
         javascriptreact = { "eslint" },

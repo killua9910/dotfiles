@@ -5,7 +5,6 @@ return {
       opts.formatters_by_ft = vim.tbl_deep_extend("force", opts.formatters_by_ft, {
         go = { "goimports", "gofumpt" },
         lua = { "stylua" },
-        python = { "ruff" },
         rust = { "rustfmt" },
         javascript = { "prettier" },
         html = { "prettier" },
@@ -14,6 +13,7 @@ return {
         typescriptreact = { "prettier" },
         css = { "prettier" },
         json = { "prettier" },
+        toml = { "taplo" },
       })
       return opts
     end,
