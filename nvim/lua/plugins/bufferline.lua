@@ -5,7 +5,7 @@ return {
     options = {
       themable = true,
       indicator = {
-        -- style = "underline",
+        style = "underline",
       },
     },
   },

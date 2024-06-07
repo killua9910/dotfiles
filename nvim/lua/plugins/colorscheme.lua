@@ -1,50 +1,98 @@
 return {
   {
-    "EdenEast/nightfox.nvim",
+    "rebelot/kanagawa.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      require("nightfox").setup({
-        options = {
-          transparent = true,
-          terminal_colors = true,
-          styles = {
-            comments = "italic",
-            constants = "bold",
-            keywords = "italic,bold",
-            functions = "bold",
-            conditionals = "bold,italic",
-          },
-        },
-        groups = {
-          all = {
-            NormalFloat = { fg = "fg1", bg = "NONE" },
-            LspInlayHint = { bg = "NONE" },
-          },
-        },
-        modules = {},
-      })
-    end,
-  },
-  {
-    "scottmckendry/cyberdream.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      local colors = require("cyberdream.colors").default
-      require("cyberdream").setup({
+      require("kanagawa").setup({
+        compile = true,
         transparent = true,
-        italic_comments = true,
-        hide_fillchars = false,
-        borderless_telescope = false,
-        terminal_colors = true,
-        theme = {
-          variant = "default",
-          highlights = {
-            Comment = { style = "italic" },
-            Constant = { style = "bold", fg = colors.magenta },
-            Function = { style = "bold" },
-            Keyword = { style = "bold" },
+        functionStyle = {
+          bold = true,
+        },
+        keywordStyle = {
+          italic = true,
+          bold = true,
+        },
+        statementStyle = {
+          bold = true,
+          italic = true,
+        },
+        typeStyle = {
+          bold = true,
+        },
+        overrides = function(colors)
+          local theme = colors.theme
+          return {
+            PreProc = { bold = true, italic = true },
+            ["@tag.attribute"] = { italic = true },
+            ["@tag.delimiter"] = { italic = true },
+            NormalFloat = { bg = "none" },
+            FloatBorder = { bg = "none" },
+            FloatTitle = { bg = "none" },
+
+            -- Save an hlgroup with dark background and dimmed foreground
+            -- so that you can use it where your still want darker windows.
+            -- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
+            NormalDark = { fg = theme.ui.fg_dim, bg = "none" },
+
+            -- Popular plugins that open floats will link to NormalFloat by default;
+            -- set their background accordingly if you wish to keep them dark and borderless
+            LazyNormal = { bg = "none", fg = theme.ui.fg_dim },
+            MasonNormal = { bg = "none", fg = theme.ui.fg_dim },
+
+            TelescopeTitle = { fg = theme.ui.special, bold = true },
+            TelescopePromptNormal = { bg = "none" },
+            TelescopePromptBorder = { fg = theme.ui.fg_dim, bg = "none" },
+            TelescopeResultsNormal = { fg = theme.ui.fg_dim, bg = "none" },
+            TelescopeResultsBorder = { fg = theme.ui.fg_dim, bg = "none" },
+            TelescopePreviewNormal = { bg = "none" },
+            TelescopePreviewBorder = { bg = "none", fg = theme.ui.fg_dim },
+
+            -- cmp
+            -- kind support
+            CmpItemKindSnippet = { fg = theme.syn.special1 },
+            CmpItemKindKeyword = { fg = theme.syn.keyword },
+            CmpItemKindText = { fg = theme.syn.special2 },
+            CmpItemKindMethod = { fg = theme.syn.fun },
+            CmpItemKindConstructor = { fg = theme.syn.fun },
+            CmpItemKindFunction = { fg = theme.syn.fun },
+            CmpItemKindFolder = { fg = theme.syn.preproc },
+            CmpItemKindModule = { fg = theme.syn.preproc },
+            CmpItemKindConstant = { fg = theme.syn.constant },
+            CmpItemKindField = { fg = theme.syn.string },
+            CmpItemKindProperty = { fg = theme.syn.string },
+            CmpItemKindEnum = { fg = theme.syn.string },
+            CmpItemKindUnit = { fg = theme.syn.string },
+            CmpItemKindClass = { fg = theme.syn.identifier },
+            CmpItemKindVariable = { fg = theme.syn.keyword },
+            CmpItemKindFile = { fg = theme.syn.fun },
+            CmpItemKindInterface = { fg = theme.syn.identifier },
+            CmpItemKindColor = { fg = theme.syn.preproc },
+            CmpItemKindReference = { fg = theme.syn.preproc },
+            CmpItemKindEnumMember = { fg = theme.syn.preproc },
+            CmpItemKindStruct = { fg = theme.syn.fun },
+            CmpItemKindValue = { fg = theme.syn.number },
+            CmpItemKindEvent = { fg = theme.syn.fun },
+            CmpItemKindOperator = { fg = theme.syn.fun },
+            CmpItemKindTypeParameter = { fg = theme.syn.fun },
+            CmpItemKindCopilot = { fg = theme.syn.special3 },
+          }
+        end,
+        colors = {
+          theme = {
+            all = {
+              ui = {
+                bg_gutter = "none",
+              },
+            },
+            wave = {
+              ui = {
+                float = {
+                  bg = "none",
+                },
+              },
+            },
           },
         },
       })
@@ -69,13 +117,13 @@ return {
       color_overrides = {},
       custom_highlights = function(C)
         return {
-          RainbowDelimiterRed = { fg = "#ff5ea0" },
-          RainbowDelimiterYellow = { fg = "#f1ff5e" },
-          RainbowDelimiterBlue = { fg = "#5ef1ff" },
-          RainbowDelimiterOrange = { fg = "#ffbd5e" },
-          RainbowDelimiterGreen = { fg = "#5eff6c" },
-          RainbowDelimiterViolet = { fg = "#ff5ef1" },
-          RainbowDelimiterCyan = { fg = "#5ef1ff" },
+          RainbowDelimiterRed = { fg = "#E82424" },
+          RainbowDelimiterYellow = { fg = "#FF9E3B" },
+          RainbowDelimiterBlue = { fg = "#7E9CD8" },
+          RainbowDelimiterOrange = { fg = "#FFA066" },
+          RainbowDelimiterGreen = { fg = "#98BB6C" },
+          RainbowDelimiterViolet = { fg = "#957FB8" },
+          RainbowDelimiterCyan = { fg = "#A3D4D5" },
           FloatBorder = { fg = C.yellow },
         }
       end,
@@ -100,6 +148,7 @@ return {
         mini = {
           enabled = true,
         },
+        overseer = true,
         cmp = true,
         dap = true,
         dap_ui = true,
@@ -141,7 +190,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin-frappe",
+      colorscheme = "catppuccin-mocha",
     },
   },
 }
