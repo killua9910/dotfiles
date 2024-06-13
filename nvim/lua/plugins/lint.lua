@@ -11,7 +11,6 @@ return {
         javascriptreact = { "eslint" },
         typescriptreact = { "eslint" },
       })
-      return opts
     end,
   },
 }

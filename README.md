@@ -18,5 +18,14 @@ end, { expr = true, noremap = true })
 
 ### screenshots
 
+> new fzf-lua so great!!!
+
+![demo3](./screenshot/demo3.png)
+
+> tmux-floax also great!!!
+
+![demo4](./screenshot/demo4.png)
+
 ![demo1](./screenshot/demo1.png)
+
 ![demo2](./screenshot/demo2.png)

@@ -1,31 +1,13 @@
 return {
   {
     "hrsh7th/nvim-cmp",
-    dependencies = { "hrsh7th/cmp-emoji", "hrsh7th/cmp-calc" },
-    opts = function(_, opts)
-      table.insert(opts.sources, { name = "emoji" })
-      table.insert(opts.sources, { name = "calc" })
-    end,
-  },
-  {
-    "hrsh7th/nvim-cmp",
     dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-emoji",
       "hrsh7th/cmp-calc",
     },
     opts = function(_, opts)
-      opts.sources = {
-        { name = "nvim_lsp", priority = 1000, group_index = 1 },
-        { name = "buffer", priority = 500, group_index = 2 },
-        { name = "luasnip", priority = 750, group_index = 1 },
-        { name = "path", priority = 250, group_index = 1 },
-        { name = "calc", priority = 100 },
-        { name = "emoji", priority = 150 },
-      }
+      table.insert(opts.sources, { name = "calc" })
+      table.insert(opts.sources, { name = "emoji" })
     end,
   },
   {
@@ -38,14 +20,14 @@ return {
       local cmp = require("cmp")
       local lspkind = require("lspkind")
       opts = vim.tbl_deep_extend("force", opts or {}, {
-        sources = {
+        sources = cmp.config.sources({
           { name = "nvim_lsp", priority = 1000, group_index = 1 },
           { name = "buffer", priority = 500, group_index = 2 },
           { name = "snippets", priority = 750, group_index = 1 },
           { name = "path", priority = 250, group_index = 1 },
           { name = "calc", priority = 100 },
           { name = "emoji", priority = 150 },
-        },
+        }),
         window = {
           completion = cmp.config.window.bordered({
             border = {
@@ -95,7 +77,7 @@ return {
                 nvim_lsp = "(LSP)",
                 buffer = "(Buffer)",
                 path = "(Path)",
-                snippets = "(Snippet)",
+                snippets = "(Snippets)",
                 emoji = "(Emoji)",
                 calc = "(Calc)",
               })[entry.source.name]

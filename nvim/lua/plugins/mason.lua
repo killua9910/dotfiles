@@ -9,15 +9,10 @@ return {
         "shellcheck",
         "shfmt",
         -- frontend
-        "prettier",
-        "eslint-lsp",
+        "css-lsp",
         -- markdown
         "markdownlint",
         "marksman",
-        -- go
-        "gofumpt",
-        "gopls",
-        "goimports",
         -- docker
         "hadolint",
 

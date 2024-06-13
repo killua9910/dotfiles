@@ -18,8 +18,3 @@ set("n", "<leader>dd", LazyVim.ui.bufremove, { desc = "Delete Buffer", silent = 
 set("n", "i", function()
   return string.match(vim.api.nvim_get_current_line(), "%g") == nil and "cc" or "i"
 end, { expr = true, noremap = true })
-
-set("n", "<leader>fB", "<cmd>Telescope file_browser<cr>", { desc = "File browser", noremap = true })
-set("n", "<leader>fu", "<cmd>Telescope undo<cr>", { desc = "Undo history", noremap = true })
-set("n", "<leader>fm", "<cmd>Telescope media_files<cr>", { desc = "Media files", noremap = true })
-set("n", "<leader><leader>", "<cmd>Telescope smart_open<cr>", { desc = "Smart open", noremap = true })

@@ -15,7 +15,6 @@ return {
         json = { "prettier" },
         toml = { "taplo" },
       })
-      return opts
     end,
   },
 }
