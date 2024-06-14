@@ -8,6 +8,9 @@ Hi, here is my dev setup!
 
 ### neovim
 
+- remove extras from config/lazy.lua
+- you have to enable lazyvim extras with `:LazyExtras` command
+
 ```lua
 -- use below 😄
 vim.keymap.set("n", "i", function()
