@@ -18,10 +18,21 @@ return {
     opts = {
       presets = {
         lsp_doc_border = true,
+        bottom_search = false,
+        command_palette = {
+          views = {
+            cmdline_popup = {
+              position = {
+                row = "40%",
+                col = "50%",
+              },
+            },
+          },
+        },
       },
       lsp = {
         signature = {
-          enabled = false,
+          enabled = true,
           opts = {
             size = {
               max_width = 50,

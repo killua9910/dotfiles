@@ -5,7 +5,7 @@ return {
     priority = 1000,
     config = function()
       require("tokyonight").setup({
-        style = "night",
+        style = "storm",
         transparent = true,
         terminal_colors = true,
         styles = {
@@ -84,6 +84,7 @@ return {
         },
         flash = true,
         barbar = true,
+        gitsigns = true,
         leap = true,
         neotree = true,
         neotest = true,

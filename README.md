@@ -21,6 +21,10 @@ end, { expr = true, noremap = true })
 
 ### screenshots
 
+![demo5](./screenshot/demo5.jpeg)
+
+![demo6](./screenshot/demo6.png)
+
 > new fzf-lua so great!!!
 
 ![demo3](./screenshot/demo3.png)

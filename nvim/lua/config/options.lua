@@ -6,7 +6,7 @@
 vim.opt.pumblend = 0
 vim.opt.updatetime = 200
 vim.opt.wrap = true
-
+vim.opt.laststatus = 3
 vim.g.rustaceanvim = {
   tools = {
     float_win_config = {

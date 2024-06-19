@@ -2,12 +2,10 @@ return {
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
-      "hrsh7th/cmp-emoji",
       "hrsh7th/cmp-calc",
     },
     opts = function(_, opts)
       table.insert(opts.sources, { name = "calc" })
-      table.insert(opts.sources, { name = "emoji" })
     end,
   },
   {
@@ -23,10 +21,9 @@ return {
         sources = cmp.config.sources({
           { name = "nvim_lsp", priority = 1000, group_index = 1 },
           { name = "buffer", priority = 500, group_index = 2 },
-          { name = "snippets", priority = 750, group_index = 1 },
+          { name = "luasnip", priority = 750, group_index = 1 },
           { name = "path", priority = 250, group_index = 1 },
           { name = "calc", priority = 100 },
-          { name = "emoji", priority = 150 },
         }),
         window = {
           completion = cmp.config.window.bordered({
@@ -77,8 +74,7 @@ return {
                 nvim_lsp = "(LSP)",
                 buffer = "(Buffer)",
                 path = "(Path)",
-                snippets = "(Snippets)",
-                emoji = "(Emoji)",
+                luasnip = "(Snippets)",
                 calc = "(Calc)",
               })[entry.source.name]
 
