@@ -9,7 +9,11 @@ return {
         "shellcheck",
         "shfmt",
         -- frontend
+        "html-lsp",
         "css-lsp",
+        "eslint-lsp",
+        "biome",
+        "prettier",
         -- markdown
         "markdownlint",
         "marksman",

@@ -1,20 +1,20 @@
 return {
   {
     "stevearc/conform.nvim",
-    opts = function(_, opts)
-      opts.formatters_by_ft = vim.tbl_deep_extend("force", opts.formatters_by_ft, {
+    opts = {
+      formatters_by_ft = {
         go = { "goimports", "gofumpt" },
         lua = { "stylua" },
         rust = { "rustfmt" },
-        javascript = { "prettier" },
-        html = { "prettier" },
-        typescript = { "prettier" },
-        javascriptreact = { "prettier" },
-        typescriptreact = { "prettier" },
-        css = { "prettier" },
-        json = { "prettier" },
+        javascript = { "biome-check", "prettier" },
+        typescript = { "biome-check", "prettier" },
+        javascriptreact = { "biome-check", "prettier" },
+        typescriptreact = { "biome-check", "prettier" },
+        tsx = { "biome-check", "prettier" },
+        css = { "biome-check", "prettier" },
+        json = { "biome-check", "prettier" },
         toml = { "taplo" },
-      })
-    end,
+      },
+    },
   },
 }

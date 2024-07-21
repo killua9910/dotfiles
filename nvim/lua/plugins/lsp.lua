@@ -5,17 +5,22 @@ return {
       inlay_hints = {
         enabled = true,
         exclude = {
-          "jsx",
           "typescriptreact",
-          "js",
-          "ts",
           "javascriptreact",
+          "javascript",
+          "typescript",
         },
       },
       codelens = {
         enabled = false,
       },
-      servers = {},
+      servers = {
+        biome = {
+          settings = {
+            single_file_support = true,
+          },
+        },
+      },
       setup = {},
     },
   },

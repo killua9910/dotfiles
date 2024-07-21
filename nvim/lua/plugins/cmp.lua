@@ -10,13 +10,8 @@ return {
   },
   {
     "hrsh7th/nvim-cmp",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons",
-      "onsails/lspkind.nvim",
-    },
     opts = function(_, opts)
       local cmp = require("cmp")
-      local lspkind = require("lspkind")
       opts = vim.tbl_deep_extend("force", opts or {}, {
         sources = cmp.config.sources({
           { name = "nvim_lsp", priority = 1000, group_index = 1 },
@@ -57,36 +52,32 @@ return {
           completeopt = "menu,menuone,noinsert,noselect",
         },
         formatting = {
-          fields = { "kind", "abbr", "menu" },
-          format = lspkind.cmp_format({
-            mode = "symbol_text",
-            preset = "codicons",
-            before = function(entry, vim_item)
-              if vim.tbl_contains({ "path" }, entry.source.name) then
-                local icon, hl_group = require("nvim-web-devicons").get_icon(entry:get_completion_item().label)
-                if icon then
-                  vim_item.kind = icon
-                  vim_item.kind_hl_group = hl_group
-                  return vim_item
-                end
+          format = function(_, item)
+            local icon = LazyVim.config.icons.kinds[item.kind]
+            if LazyVim.has("mini.icons") then
+              local mini_icon, _, _ = require("mini.icons").get("lsp", item.kind)
+              if mini_icon then
+                icon = mini_icon .. " "
               end
-              vim_item.menu = ({
-                nvim_lsp = "(LSP)",
-                buffer = "(Buffer)",
-                path = "(Path)",
-                luasnip = "(Snippets)",
-                calc = "(Calc)",
-              })[entry.source.name]
+            end
 
-              vim_item.dup = ({
-                buffer = 1,
-                path = 1,
-                nvim_lsp = 0,
-                snippets = 1,
-              })[entry.source.name] or 0
-              return vim_item
-            end,
-          }),
+            if icon then
+              item.kind = icon .. item.kind
+            end
+
+            local widths = {
+              abbr = vim.g.cmp_widths and vim.g.cmp_widths.abbr or 40,
+              menu = vim.g.cmp_widths and vim.g.cmp_widths.menu or 30,
+            }
+
+            for key, width in pairs(widths) do
+              if item[key] and vim.fn.strdisplaywidth(item[key]) > width then
+                item[key] = vim.fn.strcharpart(item[key], 0, width - 1) .. "…"
+              end
+            end
+
+            return item
+          end,
         },
       })
       return opts

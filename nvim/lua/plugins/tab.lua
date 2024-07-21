@@ -1,18 +1,14 @@
 return {
   {
     "akinsho/bufferline.nvim",
-    opts = {
-      options = {
+    opts = function(_, opts)
+      opts.options = vim.tbl_deep_extend("keep", opts.options or {}, {
         themable = true,
         indicator = {
           style = "underline",
         },
         color_icons = true,
-      },
-    },
-    config = function(_, opts)
-      opts.highlights = require("catppuccin.groups.integrations.bufferline").get()
-      require("bufferline").setup(opts)
+      })
     end,
   },
 }

@@ -5,7 +5,7 @@
 return {
   {
     "folke/which-key.nvim",
-    opts = { window = { border = "rounded" } },
+    opts = { preset = "modern", win = { border = "rounded" } },
   },
   {
     "williamboman/mason.nvim",
@@ -54,6 +54,14 @@ return {
     "folke/trouble.nvim",
     opts = function(_, opts)
       opts.focus = true
+      opts.preview = {
+        type = "float",
+        border = "rounded",
+        size = {
+          width = 0.5,
+          height = 0.5,
+        },
+      }
     end,
   },
   {
@@ -68,5 +76,9 @@ return {
         },
       },
     },
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    enabled = false,
   },
 }
