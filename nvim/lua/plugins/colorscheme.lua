@@ -52,7 +52,7 @@ return {
     priority = 1000,
     name = "catppuccin",
     opts = {
-      flavour = "mocha",
+      flavour = "frappe",
       transparent_background = true,
       term_colors = true,
       styles = {
@@ -60,21 +60,31 @@ return {
         conditionals = { "bold", "italic" },
         constants = { "bold" },
         keywords = { "bold" },
-        functions = { "italic" },
         loops = { "italic", "bold" },
       },
       color_overrides = {},
       custom_highlights = function(C)
         return {
-          RainbowDelimiterRed = { fg = "#FF1A75" },
-          RainbowDelimiterYellow = { fg = "#f1ff5e" },
-          RainbowDelimiterBlue = { fg = "#28C9FF" },
-          RainbowDelimiterOrange = { fg = "#FFAA54" },
-          RainbowDelimiterGreen = { fg = "#5eff6c" },
-          RainbowDelimiterViolet = { fg = "#bd5eff" },
-          RainbowDelimiterCyan = { fg = "#33FFFF" },
+          RainbowDelimiterRed = { fg = "#FF5D62" },
+          RainbowDelimiterYellow = { fg = "#E6C384" },
+          RainbowDelimiterBlue = { fg = "#7FB4CA" },
+          RainbowDelimiterOrange = { fg = "#FFA066" },
+          RainbowDelimiterGreen = { fg = "#98BB6C" },
+          RainbowDelimiterViolet = { fg = "#D27E99" },
+          RainbowDelimiterCyan = { fg = "#7AA89F" },
+          -- RainbowDelimiterRed = { fg = "#FF1A75" },
+          -- RainbowDelimiterYellow = { fg = "#f1ff5e" },
+          -- RainbowDelimiterBlue = { fg = "#28C9FF" },
+          -- RainbowDelimiterOrange = { fg = "#FFAA54" },
+          -- RainbowDelimiterGreen = { fg = "#5eff6c" },
+          -- RainbowDelimiterViolet = { fg = "#bd5eff" },
+          -- RainbowDelimiterCyan = { fg = "#33FFFF" },
           FloatBorder = { fg = C.yellow },
           ["@tag.tsx"] = { bold = true },
+          ["@keyword.import.tsx"] = { italic = true, fg = C.red },
+          ["@keyword.import.typescript"] = { italic = true, fg = C.red },
+          ["@keyword.export.tsx"] = { italic = true, fg = C.red },
+          ["@keyword.export.typescript"] = { italic = true, fg = C.red },
         }
       end,
       integrations = {
@@ -194,7 +204,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "tokyonight",
+      colorscheme = "catppuccin",
     },
   },
 }

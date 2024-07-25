@@ -5,7 +5,6 @@
     "lazyvim.plugins.extras.dap.core",
     "lazyvim.plugins.extras.dap.nlua",
     "lazyvim.plugins.extras.editor.fzf",
-    "lazyvim.plugins.extras.editor.inc-rename",
     "lazyvim.plugins.extras.lang.docker",
     "lazyvim.plugins.extras.lang.git",
     "lazyvim.plugins.extras.lang.go",
@@ -22,7 +21,7 @@
     "lazyvim.plugins.extras.util.mini-hipatterns"
   ],
   "news": {
-    "NEWS.md": "6296"
+    "NEWS.md": "6520"
   },
   "version": 6
 }
